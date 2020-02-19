@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
+});
+
+Route::resource('students', 'StudentsController');
+
+
+Route::get('/about', function () {
+    return view('pages.about');
 });
