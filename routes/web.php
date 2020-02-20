@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::resource('students', 'StudentsController');
 
 
+
+
 Route::get('/about', function () {
     return view('pages.about');
 });
