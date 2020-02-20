@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<i class="fas fa-user-plus"></i>
 
     <h1>BUGC Students</h1>
     <a href="students/create">ADD STUDENT</a>
@@ -27,8 +26,9 @@
                 <td>{{ $student->middlename }}</td>
                 <td>{{ $student->course }}</td>
                 <td>{{ $student->year }}</td>
-                <td><a href={{ url('students//') }}{{ "/".$student->id.'/edit' }}>Edit</a></td>
-                <td><a href={{ url('students//') }}{{ "/".$student->id }}>View</a></td>
+                <td><a href="{{ url('students')."/".$student->id }}">View</a></td>
+                <td><a href="{{ url('students')."/".$student->id.'/edit' }}">Edit</a></td>
+                <td><form action="{{ url("students").'/'.$student->id }}" method="POST"> @csrf @method('DELETE') <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm" id=""> </form></td>
             </tr>
         @endforeach
     </tbody>

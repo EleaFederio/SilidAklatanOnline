@@ -49,12 +49,12 @@ class StudentsController extends Controller
         $student->firstname = $request->firstname;
         $student->middlename = $request->middlename;
         $student->lastname = $request->lastname;
-        $student->street_brgy = $request->street_brgy;
-        $student->student_id = $request->student_id;
+        $student->street_brgy = $request->barangay;
+        $student->student_id = $request->studentid;
         $student->town = $request->town;
         $student->province = $request->province;
-        $student->zip_code = $request->zip_code;
-        $student->b_day = $request->b_day;
+        $student->zip_code = $request->zipcode;
+        $student->b_day = $request->birthday;
         $student->course = $request->course;
         $student->year = $request->year;
         $student->block = $request->block;
@@ -67,7 +67,9 @@ class StudentsController extends Controller
     }
 
     public function destroy($id){
-
+        Student::destroy($id);
+        $students = Student::all();
+        return view('pages/students/students')->with('students', $students);
     }
 
     public function edit($id){
