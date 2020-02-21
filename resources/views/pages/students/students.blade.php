@@ -15,6 +15,7 @@
         <th scope="col">Year</th>
         <th scope="col"></th>
         <th scope="col"></th>
+        <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -26,8 +27,8 @@
                 <td>{{ $student->middlename }}</td>
                 <td>{{ $student->course }}</td>
                 <td>{{ $student->year }}</td>
-                <td><a href="{{ url('students')."/".$student->id }}">View</a></td>
-                <td><a href="{{ url('students')."/".$student->id.'/edit' }}">Edit</a></td>
+                <td><a href="{{ url('students')."/".$student->id }}" class="btn btn-primary btn-sm">View</a></td>
+                <td><a href="{{ url('students')."/".$student->id.'/edit' }}" class="btn btn-secondary btn-sm">Edit</a></td>
                 <td><form action="{{ url("students").'/'.$student->id }}" method="POST"> @csrf @method('DELETE') <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm" id=""> </form></td>
             </tr>
         @endforeach

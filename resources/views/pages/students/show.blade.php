@@ -28,11 +28,13 @@
             <p><strong>Course:</strong></p>
             <p><strong>Year:</strong></p>
             <p><strong>Block:</strong></p>
+            <p><strong>Major:</strong></p>
         </div>
         <div class="col-3">
             <p> {{ $student->course }} </p>
             <p> {{ $student->year }} </p>
             <p> {{ $student->block }} </p>
+            <p> {{ $student->major }} </p>
         </div>
     </div>
 </div>

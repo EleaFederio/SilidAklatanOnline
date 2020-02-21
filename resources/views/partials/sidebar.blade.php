@@ -35,10 +35,10 @@
             <a href="#">Student ID</a>
         </li>
         <li>
-            <a href="#">Users Record</a>
+            <a href="#">Student List</a>
         </li>
         <li>
-            <a href="#">Home 3</a>
+            <a href="#">Student Login/Logout</a>
         </li>
         </ul>
     </li>
