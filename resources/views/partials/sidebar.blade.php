@@ -18,7 +18,7 @@
   <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Books</a>
   <ul class="collapse list-unstyled" id="pageSubmenu">
     <li>
-        <a href="#">Inventory</a>
+        <a href="/books">Inventory</a>
     </li>
     <li>
         <a href="#">Borrows</a>
