@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
 
 class BooksController extends Controller
 {
@@ -13,7 +14,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        return view('pages.books.index');
+        $books = Book::all();
+        return view('pages/books/index')->with('books', $books);
     }
 
     /**
@@ -23,7 +25,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view ('pages.books.add');
     }
 
     /**
