@@ -36,7 +36,20 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Book::create([
+            'title' => $request->title,
+            'author' => $request->author,
+            'publisher' => $request->publisher,
+            'call_number' => $request->call_number,
+            'isbn' => $request->isbn,
+            'edition' => $request->edition,
+            'year' => $request->year,
+            'pages' => $request->pages,
+            'copies' => $request->copies,
+            'remarks' => $request->remarks
+        ]);
+        $books = Book::all();
+        return view('pages/books/index')->with('books', $books);
     }
 
     /**
@@ -47,7 +60,8 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        //
+        $books = Book::find($id);
+        return view('pages/books/show')->with('books', $books);
     }
 
     /**
@@ -58,7 +72,8 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $books = Book::find($id);
+        return view('pages/books/edit')->with('books', $books);
     }
 
     /**
@@ -81,6 +96,8 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::destroy($id);
+        $books = Book::all();
+        return view('pages/books/index')->with('books', $books);
     }
 }

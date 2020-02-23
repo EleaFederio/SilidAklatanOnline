@@ -46,7 +46,7 @@
   <a href="#">Evaluation</a>
   </li>
   <li>
-  <a href="about">About</a>
+  <a href="{{ url('about') }}">About</a>
   </li>
 </ul>
 

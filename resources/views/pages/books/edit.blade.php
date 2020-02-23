@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>New Book</h1>
+<h1>Edit this Book</h1>
 
 <!-- Modals -->
 <div class="modal-body">
@@ -20,46 +20,46 @@
         <div class="col-md-7">
             <div class="form-group col-md-6">
             <label>Title</label>
-                <input type="text" class="form-control" name="title" placeholder="Book Title...">
+        <input type="text" class="form-control" name="title" value="{{ $books->title }}" placeholder="Book Title...">
             </div>
             <div class="form-group col-md-6">
                 <label>Author</label>
-                <input type="text" class="form-control" name="author" placeholder="Author's Name...">
+                <input type="text" class="form-control" name="author" value="{{ $books->author }}" placeholder="Author's Name...">
             </div>
             <div class="form-group col-md-10">
                 <label>Publisher</label>
-                <input type="text" class="form-control" name="publisher" placeholder="Publishers Name...">
+                <input type="text" class="form-control" name="publisher" value="{{ $books->publisher }}" placeholder="Publishers Name...">
             </div>
             <div class="form-row col-md-10">
                 <div class="form-group col-md-4">
                 <label for="inputCity">Call Number</label>
-                <input type="text" class="form-control" name="call_number" placeholder="Call Number...">
+                <input type="text" class="form-control" name="call_number" value="{{ $books->call_number }}" placeholder="Call Number...">
                 </div>
                 <div class="form-group col-md-8">
                 <label for="inputState">ISBN</label>
-                <input type="text" class="form-control" name="isbn" placeholder="ISBN..." >
+                <input type="text" class="form-control" name="isbn" value="{{ $books->isbn }}" placeholder="ISBN..." >
                 </div>
             </div>
             <div class="form-row col-md-10">
                 <div class="form-group col-md-2">
                 <label for="inputCity">Edition</label>
-                <input type="text" class="form-control" name="edition" placeholder="Edition">
+                <input type="text" class="form-control" name="edition" value="{{ $books->edition }}" placeholder="Edition">
                 </div>
                 <div class="form-group col-md-2">
                 <label for="inputState">Pages</label>
-                <input type="text" class="form-control" name="pages" placeholder="Pages..." >
+                <input type="text" class="form-control" name="pages" value="{{ $books->pages }}" placeholder="Pages..." >
                 </div>
                 <div class="form-group col-md-2">
                 <label for="inputState">Copies</label>
-                <input type="text" class="form-control" name="copies" placeholder="Copies..." >
+                <input type="text" class="form-control" name="copies" value="{{ $books->copies }}" placeholder="Copies..." >
                 </div>
                 <div class="form-group col-md-2">
                 <label for="inputZip">Year</label>
-                <input type="text" class="form-control" name="year" placeholder="Year...">
+                <input type="text" class="form-control" name="year" value="{{ $books->year }}" placeholder="Year...">
                 </div>
                 <div class="form-group col-md-4">
                 <label for="inputZip">Remarks</label>
-                <input type="text" class="form-control" name="remarks" placeholder="Remarks...">
+                <input type="text" class="form-control" name="remarks"value="{{ $books->remarks }}" placeholder="Remarks...">
                 </div>
             </div>
             <div class="form-row col-md-10">
@@ -69,18 +69,5 @@
     </div>
     </form>
 </div>
-
-<script>
-    function imagePreview(){
-        var reader = new FileReader();
-        var imageField = document.getElementById("bookpic");
-        reader.onload = function(){
-            if(reader.readyState == 2){
-                imageField.src = reader.result;
-            }
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
 
 @endsection
