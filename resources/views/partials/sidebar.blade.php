@@ -35,7 +35,7 @@
             <a href="#">Student ID</a>
         </li>
         <li>
-            <a href="#">Student List</a>
+            <a href="{{ url('students_list') }}" target="_blank">Student List</a>
         </li>
         <li>
             <a href="#">Student Login/Logout</a>

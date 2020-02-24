@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::resource('students', 'StudentsController');
 Route::resource('books', 'BooksController');
+Route::get('students_list', 'ReportGenerator@studentsList');
 
 
 
