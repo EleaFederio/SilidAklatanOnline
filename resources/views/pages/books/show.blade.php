@@ -17,7 +17,9 @@
         <p class="detail-title">Publisher</p>
         <h6 class="details-info">Zondervan</h6>
         <p class="detail-title">Call Number</p>
-        <h3 class="details-info">501.00</h3>
+        <h6 class="details-info"><strong>501.00</strong></h6>
+        <p class="detail-title">ISBN</p>
+        <h6 class="details-info">124112485512</h6>
         <p class="detail-title">Edition</p>
         <h6 class="details-info">1st</h6>
         <p class="detail-title">Available Copies</p>

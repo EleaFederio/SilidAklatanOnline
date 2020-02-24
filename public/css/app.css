@@ -59,6 +59,15 @@ body {
   text-align: left;
   background-color: #fff; }
 
+.detail-title{
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.details-info{
+  padding-top: 0;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 

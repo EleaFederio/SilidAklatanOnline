@@ -6,8 +6,9 @@
 
 <!-- Modals -->
 <div class="modal-body">
-    <form action={{ url("books") }} method="POST" enctype="multipart/form-data">
+    <form action={{ url("books").'/'.$books->id }} method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
     <div class="row">
         <div class="col-md-5">
             <div class="book-pic">
@@ -63,7 +64,7 @@
                 </div>
             </div>
             <div class="form-row col-md-10">
-                <input type="submit" class="btn btn-primary" value="Add Book">
+                <input type="submit" class="btn btn-primary" value="Update Book">
             </div>
         </div>
     </div>

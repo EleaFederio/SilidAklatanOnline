@@ -85,7 +85,20 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->publisher = $request->publisher;
+        $book->call_number = $request->call_number;
+        $book->isbn = $request->isbn;
+        $book->edition = $request->edition;
+        $book->pages = $request->pages;
+        $book->copies = $request->copies;
+        $book->year = $request->year;
+        $book->remarks = $request->remarks;
+        $book->save();
+        $books = Book::all();
+        return view('pages/books/index')->with('books', $books);
     }
 
     /**
