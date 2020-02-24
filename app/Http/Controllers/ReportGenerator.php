@@ -11,6 +11,6 @@ class ReportGenerator extends Controller
     public function studentsList(){
         $students = Student::all();
         $pdf = PDF::loadview('pages/generate/student_list', $students);
-        return $pdf->download('students.pdf');
+        return $pdf->stream('students.pdf');
     }
 }
