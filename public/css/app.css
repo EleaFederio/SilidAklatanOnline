@@ -8346,3 +8346,15 @@
     .page-break {
         page-break-after: always;
     }
+    input[type="file"]{
+      display: none;
+    }
+    .file-button{
+      color: #fff;
+      background-color: #054e92;
+      justify-content: center;
+      align-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 90.5%;
+    }
