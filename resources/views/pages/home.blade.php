@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>Home</h1>
+    <h1 class="text-center">Home</h1>
 
     <div class="card mb-4">
         <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Students Library Activities</div>

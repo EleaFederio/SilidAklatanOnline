@@ -10,4 +10,11 @@
     <link rel="stylesheet" href={{ url("/css/app.css") }}>
     <link rel="stylesheet" href={{ url("/css/jquery-ui.css") }}>
     <link rel="stylesheet" href={{ url("/css/Chart.min.css") }}>
+
+    <style>
+        .page-break {
+            page-break-after: always;
+            page-break-inside:avoid;
+        }
+    </style>
 <title>Document</title>
