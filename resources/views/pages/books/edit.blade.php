@@ -13,9 +13,8 @@
         <div class="col-md-5">
             <div class="book-pic">
                 <img src=" {{ url('images/nobookcover.jpg') }} " id="bookpic" alt="" width="350">
-                <label for="" style="" class="btn btn-primary btn-sm">
-                    <input type="file" onchange="imagePreview.call(this)" style="border:none; width:100%" name="book_image" value="upload picture">
-                </label>
+                <input type="file" onchange="imagePreview.call(this)" id="file" name="book_image"  value="upload picture">
+                <label for="file" class="file-button" ><i class="fas fa-camera-retro" style="paddin-right:10px"></i> Choose a photo</label>
             </div>
         </div>
         <div class="col-md-7">
@@ -70,5 +69,18 @@
     </div>
     </form>
 </div>
+
+<script>
+    function imagePreview(){
+        var reader = new FileReader();
+        var imageField = document.getElementById("bookpic");
+        reader.onload = function(){
+            if(reader.readyState == 2){
+                imageField.src = reader.result;
+            }
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 
 @endsection

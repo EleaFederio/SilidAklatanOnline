@@ -105,20 +105,38 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::find($id);
-        $book->title = $request->title;
-        $book->author = $request->author;
-        $book->publisher = $request->publisher;
-        $book->call_number = $request->call_number;
-        $book->isbn = $request->isbn;
-        $book->edition = $request->edition;
-        $book->pages = $request->pages;
-        $book->copies = $request->copies;
-        $book->year = $request->year;
-        $book->remarks = $request->remarks;
-        $book->save();
-        $books = Book::all();
-        return view('pages/books/index')->with('books', $books);
+        $validator = Validator::make($request->all(), [
+            'book_image' => 'image|max:5000|mimes:jpg,jpeg'
+        ]);
+
+        if($validator->passes()){
+
+            $dataTime = date('Ymd_His');
+            $file = $request->file('book_image');
+            $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
+            $savePath = public_path('/images/');
+            $file->move($savePath, $fileName);
+
+            $book = Book::find($id);
+            $book->title = $request->title;
+            $book->author = $request->author;
+            $book->publisher = $request->publisher;
+            $book->call_number = $request->call_number;
+            $book->isbn = $request->isbn;
+            $book->edition = $request->edition;
+            $book->pages = $request->pages;
+            $book->copies = $request->copies;
+            $book->image_url = $fileName;
+            $book->year = $request->year;
+            $book->remarks = $request->remarks;
+            $book->save();
+
+            $books = Book::all();
+            return view('pages/books/index')->with('books', $books);
+        }else{
+            return redirect()->back()
+            ->with(['errors'=>$validator->errors()->all()]);
+        }
     }
 
     /**
