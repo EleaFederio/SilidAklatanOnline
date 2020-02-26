@@ -6,6 +6,16 @@
 
 <!-- Modals -->
 <div class="modal-body">
+    
+    @if (session('errors'))
+        @foreach ($errors as $error)
+            <li> {{ $error }}  </li>
+        @endforeach
+    @endif
+    @if (session('success'))
+        {{ session('success') }}
+    @endif'
+
     <form action={{ url("books") }} method="POST" enctype="multipart/form-data">
         @csrf
     <div class="row">

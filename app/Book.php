@@ -16,6 +16,7 @@ class Book extends Model
         "year",
         "zip_code",
         "pages",
+        "image_url",
         "copies",
         "remarks"
     ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use Validator;
 
 class BooksController extends Controller
 {
@@ -36,20 +37,39 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        Book::create([
-            'title' => $request->title,
-            'author' => $request->author,
-            'publisher' => $request->publisher,
-            'call_number' => $request->call_number,
-            'isbn' => $request->isbn,
-            'edition' => $request->edition,
-            'year' => $request->year,
-            'pages' => $request->pages,
-            'copies' => $request->copies,
-            'remarks' => $request->remarks
+
+        $validator = Validator::make($request->all(), [
+            'book_image' => 'image|max:5000|mimes:jpg,jpeg'
         ]);
-        $books = Book::all();
-        return view('pages/books/index')->with('books', $books);
+
+        if($validator->passes()){
+
+            $dataTime = date('Ymd_His');
+            $file = $request->file('book_image');
+            $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
+            $savePath = public_path('/images/');
+            $file->move($savePath, $fileName);
+
+            Book::create([
+                'title' => $request->title,
+                'author' => $request->author,
+                'publisher' => $request->publisher,
+                'call_number' => $request->call_number,
+                'isbn' => $request->isbn,
+                'edition' => $request->edition,
+                'year' => $request->year,
+                'pages' => $request->pages,
+                'copies' => $request->copies,
+                'image_url' => $fileName,
+                'remarks' => $request->remarks
+            ]);
+
+            $books = Book::all();
+            return view('pages/books/index')->with('books', $books);
+        }else{
+            return redirect()->back()
+            ->with(['errors'=>$validator->errors()->all()]);
+        }
     }
 
     /**
