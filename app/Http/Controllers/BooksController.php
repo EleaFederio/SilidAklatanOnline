@@ -37,6 +37,7 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
+        $fileName = null;
 
         $validator = Validator::make($request->all(), [
             'book_image' => 'image|max:5000|mimes:jpg,jpeg'
@@ -44,11 +45,13 @@ class BooksController extends Controller
 
         if($validator->passes()){
 
-            $dataTime = date('Ymd_His');
-            $file = $request->file('book_image');
-            $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
-            $savePath = public_path('/images/');
-            $file->move($savePath, $fileName);
+            if($request->book_image != null){
+                $dataTime = date('Ymd_His');
+                $file = $request->file('book_image');
+                $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
+                $savePath = public_path('/images/');
+                $file->move($savePath, $fileName);
+            }
 
             Book::create([
                 'title' => $request->title,
@@ -105,17 +108,22 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $fileName = null;
+
         $validator = Validator::make($request->all(), [
             'book_image' => 'image|max:5000|mimes:jpg,jpeg'
         ]);
 
         if($validator->passes()){
 
-            $dataTime = date('Ymd_His');
-            $file = $request->file('book_image');
-            $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
-            $savePath = public_path('/images/');
-            $file->move($savePath, $fileName);
+            if($request->book_image != null){
+                $dataTime = date('Ymd_His');
+                $file = $request->file('book_image');
+                $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
+                $savePath = public_path('/images/');
+                $file->move($savePath, $fileName);
+            }
 
             $book = Book::find($id);
             $book->title = $request->title;
