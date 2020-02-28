@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-7">
         <p class="detail-title">Title</p>
-        <h2 class="details-info"> {{ $books->title }} </h2>
+        <h2 class="details-info"> <strong>{{ $books->title }}</strong> </h2>
         <p class="detail-title">Author</p>
         <h6 class="details-info">{{ $books->author }}</h6>
         <p class="detail-title">Publisher</p>

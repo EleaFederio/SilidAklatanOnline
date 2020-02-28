@@ -38,6 +38,9 @@
             <a href="{{ url('students_list') }}" target="_blank">Student List</a>
         </li>
         <li>
+            <a href=" {{ url('book_records') }} ">Books Record</a>
+        </li>
+        <li>
             <a href="#">Student Login/Logout</a>
         </li>
         </ul>

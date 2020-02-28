@@ -20,4 +20,8 @@ class Book extends Model
         "copies",
         "remarks"
     ];
+
+    public function getTableColumns(){
+        
+    }
 }
