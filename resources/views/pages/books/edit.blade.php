@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-5">
             <div class="book-pic">
-                <img src=" {{ url('images/nobookcover.jpg') }} " id="bookpic" alt="" width="350">
+                <img src="{{ $books->image_url == null ? url('images/nobookcover.jpg') : url('images').'/'.$books->image_url }}" id="bookpic" alt="" width="350">
                 <input type="file" onchange="imagePreview.call(this)" id="file" name="book_image"  value="upload picture">
                 <label for="file" class="file-button" ><i class="fas fa-camera-retro" style="paddin-right:10px"></i> Choose a photo</label>
             </div>

@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>BUGC Library Books</h1>
-    <a href="books/create">ADD BOOK</a>
+    <a href="{{ url('books/create') }}">ADD BOOK</a>
     <table class="display" id="table_id">
     <thead>
         <tr>
@@ -29,6 +29,6 @@
     </tbody>
     </table>
 
-    
+
 
 @endsection
