@@ -37,3 +37,4 @@ Route::get('/about', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/change_password', 'Auth\ChangePasswordController@index');

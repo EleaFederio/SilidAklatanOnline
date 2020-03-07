@@ -7,6 +7,12 @@ use App\Student;
 
 class StudentsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $students = Student::all();
         return view('pages/students/students')->with('students', $students);
