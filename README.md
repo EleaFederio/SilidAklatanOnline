@@ -1,4 +1,4 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><img src="https://github.com/EleaFederio/BUGC-E-Lib-Web-APP/blob/master/public/logo/Silid%20Aklatan.svg" width="400"></p>
 
 ## About this Project
 
