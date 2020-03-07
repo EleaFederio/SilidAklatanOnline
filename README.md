@@ -1,5 +1,4 @@
-<p align="center"><img src="https://github.com/EleaFederio/BUGC-E-Lib-Web-APP/blob/master/public/logo/Silid%20Aklatan.svg" width="400"></p>
-
+<p align="center"><img src="public/logo/SilidAklatan.svg" width="400"></p>
 ## About this Project
 
 A simple laravel base library management  system that is intended to help librarian in:
