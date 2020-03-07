@@ -28,7 +28,7 @@
     </li>
   </ul>
   </li>
-    <li class="active">
+    <li>
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Generate</a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
         <li>
@@ -45,12 +45,32 @@
         </li>
         </ul>
     </li>
+
   <li>
-  <a href="#">Evaluation</a>
-  </li>
+    <a href="#">Evaluation</a>
+    </li>
   <li>
   <a href="{{ url('about') }}">About</a>
   </li>
+  <li>
+    <a href="#myAccount" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">My Account</a>
+    <ul class="collapse list-unstyled" id="myAccount">
+      <li>
+          <a href="#">Settings</a>
+      </li>
+      <li>
+          <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+      </li>
+    </ul>
+    </li>
 </ul>
 
 

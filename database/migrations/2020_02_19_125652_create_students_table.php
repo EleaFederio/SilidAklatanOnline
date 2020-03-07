@@ -31,7 +31,7 @@ class CreateStudentsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('hash')->nullable();
-            $table->string('app_password')->nullable();
+            $table->string('password')->nullable();
             $table->string('biometics')->nullable();
             $table->timestamps();
         });
