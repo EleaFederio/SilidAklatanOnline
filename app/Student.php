@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
 
 class Student extends Model
 {
+    use HasApiTokens;
+
     protected $fillable = [
         "firstname",
         "middlename",
@@ -19,7 +22,8 @@ class Student extends Model
         "course",
         "year",
         "block",
-        "majoy",
+        "major",
+        "password",
         "phone",
         "email"
     ];
