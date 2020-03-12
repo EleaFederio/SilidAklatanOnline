@@ -34,7 +34,8 @@ class StudentsController extends Controller
             'course' => $request->course,
             'year' => $request->year,
             'block' => $request->block,
-            'major' => $request->major
+            'major' => $request->major,
+            "hash" => $this->generateRandomString(),
         ]);
         $students = Student::all();
         return view('pages/students/students')->with('students', $students);
@@ -80,5 +81,15 @@ class StudentsController extends Controller
     public function edit($id){
         $student = Student::find($id);
         return view('pages/students/edit')->with('student', $student);
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

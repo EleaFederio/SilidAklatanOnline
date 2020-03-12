@@ -23,6 +23,7 @@ class Student extends Model
         "year",
         "block",
         "major",
+        "hash",
         "password",
         "phone",
         "email"
