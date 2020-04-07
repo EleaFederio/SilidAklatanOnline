@@ -32,6 +32,7 @@ class CreateStudentsTable extends Migration
             $table->string('profile_img')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('is_student')->default(false);
             $table->rememberToken();
             $table->string('hash')->nullable();
             $table->string('password')->nullable();

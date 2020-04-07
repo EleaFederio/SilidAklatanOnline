@@ -1,24 +1,33 @@
 <?php
 namespace App\Http\Controllers\Api;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Student;
-use Illuminate\Support\Facades\Auth;
 use Validator;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     public $successStatus = 200;
 
-    public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
-            $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')-> accessToken;
-            return response()->json(['success' => $success], $this-> successStatus);
-        }
-        else{
-            return response()->json(['error'=>'Unauthorised'], 401);
-        }
+    function login(Request $request)
+    {
+        $user= Student::where('email', $request->email)->first();
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response([
+                    'message' => ['These credentials do not match our records.']
+                ], 404);
+            }
+        
+             $token = $user->createToken('my-app-token')->plainTextToken;
+        
+            $response = [
+                'success' => true,
+                'student' => $user,
+                'token' => $token
+            ];
+        
+             return response($response, 201);
     }
 
     public function register(Request $request)
@@ -41,13 +50,10 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = Student::create($input);
-        // $success['token'] =  $user->createToken('MyApp')-> accessToken;
-        // $success['student'] =  $user;
-        // $success['sucess'] = true;
-        // return response()->json(['success'=>$success], $this-> successStatus);
+        $token = $user->createToken('my-app-token')->plainTextToken;
         return response()->json([
             'success' => true,
-            'token' => $user->createToken('MyApp')-> accessToken,
+            'token' => $token,
             'student' => $user
         ]);
     }
