@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User  as Authenticatable;
+use App\Book;
 
 class Student extends Authenticatable
 {
@@ -29,4 +30,8 @@ class Student extends Authenticatable
         "phone",
         "email"
     ];
+
+    public function books(){
+        return $this->belongsToMany(Book::class);
+    }
 }
