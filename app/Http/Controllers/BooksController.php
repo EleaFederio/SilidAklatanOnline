@@ -148,6 +148,10 @@ class BooksController extends Controller
         }
     }
 
+    public function borrowBookList(){
+        return view('pages/books/borrowlist');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

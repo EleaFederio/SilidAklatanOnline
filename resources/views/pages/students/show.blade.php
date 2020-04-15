@@ -17,11 +17,11 @@
         </div>
         <div class="col-4">
             <p> {{ $student->firstname }} </p>
-            <p> {{ $student->middlename }} </p>
+            <p> {{ $student->middlename == null ? 'No Data' : $student->middlename }} </p>
             <p> {{ $student->lastname }} </p>
             <p> {{ $student->street_brgy.', '.$student->town.', '.$student->province }} </p>
-            <p> {{ $student->zip_code }} </p>
-            <p> {{ $student->phone }} </p>
+            <p> {{ $student->zip_code == null ? 'No Data' : $student->zip_code }} </p>
+            <p> {{ $student->phone == null ? 'No Data' : $student->phone }} </p>
             <p> {{ $student->email }} </p>
         </div>
         <div class="col-2">
@@ -33,8 +33,8 @@
         <div class="col-3">
             <p> {{ $student->course }} </p>
             <p> {{ $student->year }} </p>
-            <p> {{ $student->block }} </p>
-            <p> {{ $student->major }} </p>
+            <p> {{ $student->block == null ? 'No Data' : $student->block }} </p>
+            <p> {{ $student->major == null ? 'No Data' : $student->major }} </p>
         </div>
     </div>
 </div>
