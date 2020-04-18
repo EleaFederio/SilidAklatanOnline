@@ -148,8 +148,12 @@ class BooksController extends Controller
         }
     }
 
-    public function borrowBookList(){
-        return view('pages/books/borrowlist');
+    public function borrowBookRequestList(){
+        return view('pages/books/borrowrequest');
+    }
+
+    public function borrowBookApprovedList(){
+        return view('pages/books/approvedrequest');
     }
 
     /**

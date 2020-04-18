@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('books', 'Api\Books@index');
+Route::post('borrow_book', 'Api\Books@borrowBook');
 
 Route::post('login', 'Api\UserController@login');
 Route::post('register', 'Api\UserController@register');

@@ -22,7 +22,8 @@ Route::resource('books', 'BooksController');
 Route::get('students_list', 'ReportGenerator@studentsList');
 Route::get('book_records', 'ReportGenerator@book_records');
 Route::get('bookrecords', 'ReportGenerator@book_export');
-Route::get('book/borrows', 'BooksController@borrowBookList');
+Route::get('book/borrowrequest', 'BooksController@borrowBookRequestList');
+Route::get('book/borrowapproved', 'BooksController@borrowBookApprovedList');
 
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){

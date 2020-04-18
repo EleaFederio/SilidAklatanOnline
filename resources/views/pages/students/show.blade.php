@@ -4,6 +4,8 @@
 
 <div class="container">
     <h1>{{ $student->firstname.' '.$student->lastname }}</h1>
+    <a href="" class="btn btn-primary btn-sm">View Clearance</a>
+    <br>
     <br>
     <div class="row">
         <div class="col-2">
