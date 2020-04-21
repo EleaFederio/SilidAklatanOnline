@@ -24,6 +24,7 @@ Route::get('book_records', 'ReportGenerator@book_records');
 Route::get('bookrecords', 'ReportGenerator@book_export');
 Route::get('book/borrowrequest', 'BooksController@borrowBookRequestList');
 Route::get('book/borrowapproved', 'BooksController@borrowBookApprovedList');
+Route::get('book/request', 'BooksController@request');
 
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){

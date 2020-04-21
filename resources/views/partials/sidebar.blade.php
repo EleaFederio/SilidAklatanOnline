@@ -24,7 +24,7 @@
         <a href="/book/borrowrequest">Borrows</a>
     </li>
     <li>
-        <a href="#">Request</a>
+        <a href="/book/request">Request</a>
     </li>
   </ul>
   </li>

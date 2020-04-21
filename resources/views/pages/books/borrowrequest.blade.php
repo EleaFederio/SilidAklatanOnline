@@ -16,12 +16,25 @@
         </li>
     </ul>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
+    <table class="display" id="table_id">
+        <thead>
+            <tr>
+            <th scope="col">Borrower</th>
+            <th scope="col">Book</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($borrowRequest as $request)
+                <tr>
+                    <td> <h6 style="margin-bottom:0%"><strong>{{ $request->firstname.' '.$request->lastname}}</strong></h6> <p>{{ $request->course.' '.$request->year }}</p></td>
+                    <td><h6 style="margin-bottom:0%"><strong>{{ $request->title }}</strong></h6><p style="margin-bottom:0%">Author: {{ $request->author }}</p><p style="margin-bottom:0%">Publisher: {{ $request->publisher }}</p></td>
+                    <td><a href="{{ url('books')."/".$request->id }}" class="btn btn-primary btn-sm">Approve</a></td>
+                    <td><form action="{{ url("books").'/'.$request->id }}" method="POST"> @csrf @method('DELETE') <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm" id=""> </form></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 @endsection

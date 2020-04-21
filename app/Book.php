@@ -21,7 +21,7 @@ class Book extends Model
         "remarks"
     ];
 
-    public function getTableColumns(){
-        
+    public function students(){
+        return $this->belongsToMany(Student::class)->withTimestamps();
     }
 }

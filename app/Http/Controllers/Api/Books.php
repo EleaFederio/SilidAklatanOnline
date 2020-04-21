@@ -6,6 +6,7 @@ use App\Book;
 use App\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Books extends Controller
 {
@@ -19,11 +20,13 @@ class Books extends Controller
 
         if($student == null){
             return response()->json([
+                'success' => false,
                 'message' => 'empty Student',
             ]);
         }
         if($book == null){
             return response()->json([
+                'success' => false,
                 'message' => 'book not found',
             ]);
         }
@@ -34,9 +37,23 @@ class Books extends Controller
                 'message' => 'Book borrow request sent.',
             ]);
         }
-    
-        // 
+    }
+
+    public function borrowBookList(Request $request){
         
+        $data = DB::table('book_student')
+        ->join('students', 'students.id', 'book_student.student_id')
+        ->join('books', 'books.id', 'book_student.book_id')
+        ->select('students.firstname', 'books.title', 'books.author', 'books.image_url', 'book_student.id', 'book_student.created_at')
+        ->where('students.id', $request->studentId)
+        ->get();
+
+        return response()->json([
+            'success' => true,
+            'booktobeborrow' => $data,
+        ]);
 
     }
+
+    
 }

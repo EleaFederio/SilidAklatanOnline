@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Book;
 use Validator;
 
@@ -149,11 +150,22 @@ class BooksController extends Controller
     }
 
     public function borrowBookRequestList(){
-        return view('pages/books/borrowrequest');
+
+        $data = DB::table('book_student')
+        ->join('students', 'students.id', 'book_student.student_id')
+        ->join('books', 'books.id', 'book_student.book_id')
+        ->select('students.firstname', 'students.lastname', 'students.student_id', 'students.course', 'students.year', 'books.title', 'books.author', 'books.publisher', 'books.image_url', 'book_student.id', 'book_student.created_at')
+        ->get();
+
+        return view('pages/books/borrowrequest')->with('borrowRequest', $data);
     }
 
     public function borrowBookApprovedList(){
         return view('pages/books/approvedrequest');
+    }
+
+    public function request(){
+        return view('pages/books/bookrequest');
     }
 
     /**
