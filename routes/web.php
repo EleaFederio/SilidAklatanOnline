@@ -14,6 +14,9 @@
 //Route::get('/', function () {
 //    return view('pages.home');
 //});
+Route::get('/studentcenter', 'StudentCenter@showPage');
+Route::livewire('home', 'student-home');
+
 
 Route::get('/', 'HomeController@index')->name('home');
 
