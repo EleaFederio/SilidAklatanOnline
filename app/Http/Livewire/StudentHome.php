@@ -13,16 +13,26 @@ class StudentHome extends Component
         'searchInputData' => ''
     ];
 
-    public $searchResult;
+    public $searchResults = [];
 
     public function render()
     {
         return view('livewire.student-home');
     }
 
-    public function searchLike(){
+//    public function searchLike(){
+//
+//    }
+
+    public function updated(){
         $searchData = $this->searchInput['searchInputData'];
-        $result = Book::where( 'title', 'LIKE',  "%$searchData%")->take(5)->get();
-        $this->searchResult = $result;
+//        dd($searchData);
+        if (empty($searchData) || $searchData == " "){
+            $this->searchResults = [];
+        }else{
+            $result = Book::where( 'title', 'LIKE',  "%$searchData%")->take(5)->get();
+            $this->searchResults = $result;
+        }
+
     }
 }
