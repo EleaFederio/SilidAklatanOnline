@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Book;
+//use Maatwebsite\Excel\Facades\Excel;
 use Validator;
+use Excel;
+use App\Imports\BookImport;
 
 class BooksController extends Controller
 {
@@ -70,6 +73,9 @@ class BooksController extends Controller
             ]);
 
             $books = Book::all();
+//            echo '<pre>';
+//                var_dump($books);
+//            echo '</pre>';
             return view('pages/books/index')->with('books', $books);
         }else{
             return redirect()->back()
@@ -180,4 +186,45 @@ class BooksController extends Controller
         $books = Book::all();
         return view('pages/books/index')->with('books', $books);
     }
+
+    public function exportIntoExcel(){
+        return Excel::download(new Book, 'books.xlsx');
+    }
+
+    public function exportIntoCSV(){
+        return Excel::download(new Book, 'books.csv');
+    }
+
+
+    public function importForm(){
+
+    }
+
+    public function import(Request $request){
+
+        $bookSpreadSheet = $request->file('booklist');
+
+//        dd($bookSpreadSheet->extension());
+
+        $error = array();
+        if(empty($request->file())){
+            array_push($error, 'No File Selected');
+        }else{
+            if( $bookSpreadSheet->extension() != 'txt'){
+                array_push($error, 'File not supported');
+            }
+            Excel::import(new BookImport, $request->file('booklist')->store('import'));
+            $books = Book::all();
+            return view('pages/books/index')->with('books', $books);
+        }
+        return redirect()->back();
+
+//        print_r($error);
+
+//        Excel::import(new BookImport, $request->file('booklist')->store('import'));
+//        $books = Book::all();
+//        return view('pages/books/index')->with('books', $books);
+
+    }
+
 }

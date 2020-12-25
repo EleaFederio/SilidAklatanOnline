@@ -4,7 +4,7 @@
 
     <h1>BUGC Library Books</h1>
     <a href="{{ url('books/create') }}" class="btn btn-secondary btn-sm">ADD BOOK</a>
-    <btn class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">ADD BOOKS</btn>
+    <btn class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">IMPORT BOOKS</btn>
     <table class="display mt-5" id="table_id">
         <thead>
             <tr>
@@ -41,7 +41,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <form method="POST" action="{{route('book.import')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="booklist" >Choose CSV</label>
+                        <input type="file" name="booklist" id="booklist" class="form-control-file" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" >Submit</button>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
