@@ -1,5 +1,8 @@
 <?php
-
+use \App\Http\Controllers\ReportGenerator;
+use \App\Http\Controllers\BooksController;
+use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\Auth\ChangePasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,16 +21,16 @@ Route::get('/studentcenter', 'StudentCenter@showPage');
 Route::livewire('home', 'student-home');
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('students', 'StudentsController');
-Route::resource('books', 'BooksController');
-Route::get('students_list', 'ReportGenerator@studentsList');
-Route::get('book_records', 'ReportGenerator@book_records');
-Route::get('bookrecords', 'ReportGenerator@book_export');
-Route::get('book/borrowrequest', 'BooksController@borrowBookRequestList');
-Route::get('book/borrowapproved', 'BooksController@borrowBookApprovedList');
-Route::get('book/request', 'BooksController@request');
+Route::resource('books', 'BooksController' );
+Route::get('students_list', [ReportGenerator::class, 'studentsList']);
+Route::get('book_records', [ReportGenerator::class, 'book_records']);
+Route::get('bookrecords', [ReportGenerator::class, 'book_export']);
+Route::get('book/borrowrequest', [BooksController::class, 'borrowBookRequestList']);
+Route::get('book/borrowapproved', [BooksController::class, 'borrowBookApprovedList']);
+Route::get('book/request', [BooksController::class, 'request']);
 
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
@@ -35,7 +38,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 });
 
 //Route Form CSV Import
-Route::post('/book/import', 'BooksController@import')->name('book.import');
+Route::post('/book/import', [BooksController::class, 'import'])->name('book.import');
 
 
 
@@ -44,5 +47,5 @@ Route::get('/about', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/change_password', 'Auth\ChangePasswordController@index');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/change_password', [ChangePasswordController::class, 'index']);
