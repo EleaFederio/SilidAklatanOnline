@@ -44,8 +44,8 @@
                 <form method="POST" action="{{route('book.import')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="booklist" >Choose CSV</label>
-                        <input type="file" name="booklist" id="booklist" class="form-control-file" />
+                        <label for="booklist" style="padding: 3px; border: 1px solid grey; border-radius: 3px; ">Choose CSV</label>
+                        <input type="file" name="booklist" id="booklist" class="form-control" />
                     </div>
                     <button type="submit" class="btn btn-primary" >Submit</button>
                 </form>
