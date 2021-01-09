@@ -50,6 +50,10 @@
     <a href="#">Evaluation</a>
     </li>
   <li>
+    <li>
+        <a href="#">Reservation</a>
+    </li>
+    <li>
   <a href="{{ url('about') }}">About</a>
   </li>
   <li>

@@ -41,6 +41,8 @@
                 </button>
             </div>
             <div class="modal-body">
+                <h6>CVS Book format should be like this:</h6>
+                <p>title, author, publisher, call_number, isbn, edition, year, pages, copies, remarks, image_url</p>
                 <form method="POST" action="{{route('book.import')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
