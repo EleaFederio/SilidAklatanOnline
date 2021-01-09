@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>BUGC Students</h1>
-    <a href="students/create">ADD STUDENT</a>
+    <a href="students/create" class="btn btn-primary btn-sm"><i class="fas fa-user-plus"></i>  ADD STUDENT</a>
     <table class="display" id="table_id">
     <thead>
         <tr>
@@ -13,9 +13,7 @@
         <th scope="col">Middle</th>
         <th scope="col">Course</th>
         <th scope="col">Year</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Options</th>
         </tr>
     </thead>
     <tbody>
@@ -27,14 +25,24 @@
                 <td>{{ $student->middlename }}</td>
                 <td>{{ $student->course }}</td>
                 <td>{{ $student->year }}</td>
-                <td><a href="{{ url('students')."/".$student->id }}" class="btn btn-primary btn-sm">View</a></td>
-                <td><a href="{{ url('students')."/".$student->id.'/edit' }}" class="btn btn-secondary btn-sm">Edit</a></td>
-                <td><form action="{{ url("students").'/'.$student->id }}" method="POST"> @csrf @method('DELETE') <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm" id=""> </form></td>
+                <td>
+                    <div class="row">
+                        <div class="col-4">
+                            <a href="{{ url('students')."/".$student->id }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="col-4">
+                            <a href="{{ url('students')."/".$student->id.'/edit' }}" class="btn btn-secondary btn-sm"><i class="fas fa-user-edit"></i></a>
+                        </div>
+                        <div class="col-4">
+                            <form action="{{ url("students").'/'.$student->id }}" method="POST"> @csrf @method('DELETE') <button type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm" id=""><i class="fas fa-trash-alt"></i></button> </form>
+                        </div>
+                    </div>
+                </td>
             </tr>
         @endforeach
     </tbody>
     </table>
 
-    
+
 
 @endsection
