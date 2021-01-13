@@ -14,6 +14,15 @@ class Books extends Controller
         return Book::all();
     }
 
+    public function bookSearch(Request $request)
+    {
+        $searchKey = $request->title;
+        $searchResult = Book::where('title', 'like', '%' . $searchKey . '%')
+            ->orWhere('author', 'like', '%' . $searchKey . '%')->paginate(10);
+        return $searchResult;
+
+    }
+
     public function borrowBook(Request $request){
         $student = Student::find($request->studentId);
         $book = Book::find($request->bookIdNumber);
@@ -40,7 +49,7 @@ class Books extends Controller
     }
 
     public function borrowBookList(Request $request){
-        
+
         $data = DB::table('book_student')
         ->join('students', 'students.id', 'book_student.student_id')
         ->join('books', 'books.id', 'book_student.book_id')
@@ -55,5 +64,5 @@ class Books extends Controller
 
     }
 
-    
+
 }

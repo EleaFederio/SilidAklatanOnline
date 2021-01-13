@@ -24,6 +24,8 @@ class BooksController extends Controller
         return view('pages/books/index')->with('books', $books);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
