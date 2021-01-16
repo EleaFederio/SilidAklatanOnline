@@ -12,21 +12,21 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-        $user= Student::where('email', $request->email)->first();
+        $user= Student::where('student_id', $request->student_id)->first();
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return response([
                     'message' => ['These credentials do not match our records.']
                 ], 404);
             }
-        
+
              $token = $user->createToken('my-app-token')->plainTextToken;
-        
+
             $response = [
                 'success' => true,
                 'student' => $user,
                 'token' => $token
             ];
-        
+
              return response($response, 201);
     }
 

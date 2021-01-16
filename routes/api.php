@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,6 @@ Route::post('books/search', 'Api\Books@bookSearch');
 Route::post('borrow_book', 'Api\Books@borrowBook');
 Route::get('borrowed_books/{studentId}', 'Api\Books@borrowBookList');
 
-Route::post('login', 'Api\UserController@login');
-Route::post('register', 'Api\UserController@register');
-
+Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
 
