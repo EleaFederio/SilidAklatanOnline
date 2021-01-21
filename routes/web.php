@@ -3,6 +3,7 @@ use \App\Http\Controllers\ReportGenerator;
 use \App\Http\Controllers\BooksController;
 use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\Auth\ChangePasswordController;
+use \App\Http\Controllers\StudentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,10 @@ Route::get('bookrecords', [ReportGenerator::class, 'book_export']);
 Route::get('book/borrowrequest', [BooksController::class, 'borrowBookRequestList']);
 Route::get('book/borrowapproved', [BooksController::class, 'borrowBookApprovedList']);
 Route::get('book/request', [BooksController::class, 'request']);
+
+//Reset Student Password using sms
+Route::post('student/password/reset/{id}', [StudentsController::class, 'smsResetPassword'])->name('student.resetPassword');
+
 
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){

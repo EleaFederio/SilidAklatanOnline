@@ -20,7 +20,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'books/search',
-        'login',
+        'api/login',
         'logout'
     ];
 }

@@ -32,12 +32,21 @@
             <p><strong>Block:</strong></p>
             <p><strong>Major:</strong></p>
         </div>
+        <script>
+
+        </script>
         <div class="col-3">
             <p> {{ $student->course }} </p>
             <p> {{ $student->year }} </p>
             <p> {{ $student->block == null ? 'No Data' : $student->block }} </p>
             <p> {{ $student->major == null ? 'No Data' : $student->major }} </p>
+{{--            {{ dd(url()) }}--}}
+            <form method="post" action="{{ route('student.resetPassword', ['id' => $student->id])  }}">
+                @csrf
+                <input type="submit" class="btn btn-info" value="send">
+            </form>
         </div>
     </div>
+
 </div>
 @endsection

@@ -92,4 +92,34 @@ class StudentsController extends Controller
         }
         return $randomString;
     }
+
+    public function smsResetPassword($id){
+        $student = Student::find($id);
+        $number = "+63{$student->phone}";
+        $message = "Hello {$student->firstname}, {$student->lastname} ";
+
+        $url = "https://semysms.net/api/3/sms.php"; //Url address for sending SMS
+        $phone = $number; // Phone number
+        $msg = $message;  // Message
+        $device = '269148';  //  Device code
+        $token = '51cd066454bd5c6225bc35cb27765c88';  //  Your token (secret)
+
+        $data = array(
+            "phone" => $phone,
+            "msg" => $msg,
+            "device" => $device,
+            "token" => $token
+        );
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        $output = curl_exec($curl);
+        curl_close($curl);
+
+        echo $output;
+    }
 }

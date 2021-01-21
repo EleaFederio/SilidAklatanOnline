@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Http\Resources\StudentAuthDataCollection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Student;
@@ -12,18 +13,20 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-        $user= Student::where('student_id', $request->student_id)->first();
+        $user = Student::where('student_id', $request->student_id)->first();
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return response([
                     'message' => ['These credentials do not match our records.']
                 ], 404);
             }
 
-             $token = $user->createToken('my-app-token')->plainTextToken;
+            $token = $user->createToken('my-app-token')->plainTextToken;
+
+            $userData = new StudentAuthDataCollection($user);
 
             $response = [
                 'success' => true,
-                'student' => $user,
+                'student' => $userData,
                 'token' => $token
             ];
 
