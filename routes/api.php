@@ -25,4 +25,5 @@ Route::get('borrowed_books/{studentId}', 'Api\Books@borrowBookList');
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
+Route::get('/student', [UserController::class, 'details'])->middleware('auth:sanctum');
 
