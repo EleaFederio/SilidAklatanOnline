@@ -21,6 +21,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'books/search',
         'api/login',
-        'logout'
+        'logout',
+        'student'
     ];
 }
