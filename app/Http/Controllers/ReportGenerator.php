@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Exports\BookExport;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+
 use App\Student;
 use App\Book;
+use Maatwebsite\Excel\Excel;
 use PDF;
 
 class ReportGenerator extends Controller

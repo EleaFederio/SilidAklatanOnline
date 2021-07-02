@@ -18,8 +18,8 @@ use \App\Http\Controllers\StudentsController;
 //Route::get('/', function () {
 //    return view('pages.home');
 //});
-Route::get('/studentcenter', 'StudentCenter@showPage');
-Route::livewire('home', 'student-home');
+//Route::get('/studentcenter', 'StudentCenter@showPage');
+//Route::livewire('home', 'student-home');
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

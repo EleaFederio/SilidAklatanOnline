@@ -18,10 +18,10 @@ use \App\Http\Controllers\Api\UserController;
 //   return $request->user();
 //});
 
-Route::get('books', 'Api\Books@index');
-Route::post('books/search', 'Api\Books@bookSearch');
-Route::post('borrow_book', 'Api\Books@borrowBook');
-Route::get('borrowed_books/{studentId}', 'Api\Books@borrowBookList');
+//Route::get('books', 'Api\Books@index');
+//Route::post('books/search', 'Api\Books@bookSearch');
+//Route::post('borrow_book', 'Api\Books@borrowBook');
+//Route::get('borrowed_books/{studentId}', 'Api\Books@borrowBookList');
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
