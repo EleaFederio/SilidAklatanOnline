@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-use \App\Http\Controllers\Api\UserController;
-
+use App\Http\Controllers\Api\Books;
+use App\Http\Controllers\Api\StudentAuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,12 +18,12 @@ use \App\Http\Controllers\Api\UserController;
 //   return $request->user();
 //});
 
-//Route::get('books', 'Api\Books@index');
-//Route::post('books/search', 'Api\Books@bookSearch');
-//Route::post('borrow_book', 'Api\Books@borrowBook');
-//Route::get('borrowed_books/{studentId}', 'Api\Books@borrowBookList');
+Route::get('books', [Books::class, 'index']);
+Route::post('books/search', [Books::class, 'bookSearch']);
+Route::post('borrow_book', [Books::class, 'borrowBook']);
+Route::post('borrowed_books', [Books::class, 'borrowBookList']);
 
-Route::post('login', [UserController::class, 'login']);
-Route::post('register', [UserController::class, 'register']);
-Route::get('/student', [UserController::class, 'details'])->middleware('auth:sanctum');
+Route::post('login', [StudentAuthController::class, 'login']);
+Route::post('register', [StudentAuthController::class, 'register']);
+Route::get('/student', [StudentAuthController::class, 'details'])->middleware('auth:sanctum');
 

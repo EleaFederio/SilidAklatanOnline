@@ -23,22 +23,35 @@ class Books extends Controller
 
     }
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * sample API
+     *  {
+     *      "studentId" : 22,
+     *      "bookIdNumber" : 23
+     *  }
+     */
     public function borrowBook(Request $request){
         $student = Student::find($request->studentId);
         $book = Book::find($request->bookIdNumber);
 
+        //Check if the student exist in the database
         if($student == null){
             return response()->json([
                 'success' => false,
                 'message' => 'empty Student',
             ]);
         }
+        //Check if the book exist in the database
         if($book == null){
             return response()->json([
                 'success' => false,
                 'message' => 'book not found',
             ]);
         }
+        
         if($student != null && $book != null){
             $student->books()->attach($book);
             return response()->json([
@@ -48,15 +61,36 @@ class Books extends Controller
         }
     }
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * sample API body
+     *  {
+     *      "studentId" : 2
+     *  }
+     *
+     */
     public function borrowBookList(Request $request){
 
+        //Check if the student exist in the database
+        if(Student::find($request->studentId) == null){
+            return response()->json([
+                'success' => false,
+                'message' => 'Student doesn\'t exist' ,
+            ]);
+        }
+
+        // if the student exist in the database => find the books that he/she borrows
         $data = DB::table('book_student')
-        ->join('students', 'students.id', 'book_student.student_id')
-        ->join('books', 'books.id', 'book_student.book_id')
+        ->join('students', 'students.id', '=','book_student.student_id')
+        ->join('books', 'books.id','='  ,'book_student.book_id')
         ->select('students.firstname', 'books.title', 'books.author', 'books.image_url', 'book_student.id', 'book_student.created_at')
         ->where('students.id', $request->studentId)
         ->get();
 
+        // then return the result
         return response()->json([
             'success' => true,
             'booktobeborrow' => $data,

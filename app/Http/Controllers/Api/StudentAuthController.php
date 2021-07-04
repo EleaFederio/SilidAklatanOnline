@@ -7,7 +7,7 @@ use App\Student;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class StudentAuthController extends Controller
 {
     public $successStatus = 200;
 
