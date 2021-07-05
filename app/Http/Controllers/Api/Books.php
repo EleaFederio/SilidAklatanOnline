@@ -28,10 +28,7 @@ class Books extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * sample API
-     *  {
-     *      "studentId" : 22,
-     *      "bookIdNumber" : 23
-     *  }
+     *
      */
     public function borrowBook(Request $request){
         $student = Student::find($request->studentId);
@@ -51,8 +48,19 @@ class Books extends Controller
                 'message' => 'book not found',
             ]);
         }
-        
+
         if($student != null && $book != null){
+            $isBookExist = DB::table('book_student')
+                ->where('student_id', $request->studentId)
+                ->where('book_id', $request->bookIdNumber)
+                ->get();
+            // Check if book is already borrowed by the user
+            if(!sizeof($isBookExist) == 0){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Book already borrowed',
+                ]);
+            }
             $student->books()->attach($book);
             return response()->json([
                 'success' => true,
