@@ -20,8 +20,8 @@ use App\Http\Controllers\Api\StudentAuthController;
 
 Route::get('books', [Books::class, 'index']);
 Route::post('books/search', [Books::class, 'bookSearch']);
-Route::post('borrow_book', [Books::class, 'borrowBook']);
-Route::post('borrowed_books', [Books::class, 'borrowBookList']);
+Route::post('book/borrow', [Books::class, 'borrowBook']);
+Route::post('books/borrowed', [Books::class, 'borrowBookList']);
 
 Route::post('login', [StudentAuthController::class, 'login']);
 Route::post('register', [StudentAuthController::class, 'register']);
