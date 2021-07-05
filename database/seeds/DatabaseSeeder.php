@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'admin',
-            'email' => 'admin@admin.com',
+            'email' => 'gc-library@bicol-u.edu.ph',
             'password' => Hash::make('password'),
         ]);
         // $this->call(UsersTableSeeder::class);

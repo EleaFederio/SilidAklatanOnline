@@ -27,7 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('students', 'StudentsController');
 Route::resource('books', 'BooksController' );
 Route::get('students_list', [ReportGenerator::class, 'studentsList']);
-Route::get('book_records', [ReportGenerator::class, 'book_records']);
+Route::get('book_records', [ReportGenerator::class, 'coreBookCollection']);
 Route::get('bookrecords', [ReportGenerator::class, 'book_export']);
 Route::get('book/borrowrequest', [BooksController::class, 'borrowBookRequestList']);
 Route::get('book/borrowapproved', [BooksController::class, 'borrowBookApprovedList']);

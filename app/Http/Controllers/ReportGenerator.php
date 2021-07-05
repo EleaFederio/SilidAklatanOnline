@@ -25,6 +25,13 @@ class ReportGenerator extends Controller
         // return view('pages/generate/student_list')->with('students', $students);
     }
 
+    public function coreBookCollection(){
+        $books = Book::all();
+        $pdf = PDF::loadview('generate/core-book-collection', ['books' => $books])->setPaper('legal');
+        return $pdf->stream('students.pdf');
+        // return view('pages/generate/student_list')->with('students', $students);
+    }
+
     public function book_export(){
         return Excel::download(new BookExport, 'booksReport.csv');
     }
