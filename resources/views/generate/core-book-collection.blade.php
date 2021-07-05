@@ -27,14 +27,14 @@
             width: 100%;
             text-align: center;
             position: fixed;
-            bottom: 100px;
+            bottom: 0px;
         }
     </style>
 </head>
 <body>
 
 
-@foreach($books->chunk(30) as $chunk)
+{{--@foreach($books->chunk(30) as $chunk)--}}
 <div >
     <div class="docheader">
         <p class="text-center" style="margin:0"><small>Republic of the Philippine</small></p>
@@ -55,7 +55,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($chunk as $book)
+        @foreach ($books as $book)
         <tr scope="row">
             <td class="text-center"> {{ $book->title }} </td>
             <td class="text-center"> {{ $book->call_number }} </td>
@@ -68,7 +68,7 @@
     </table>
     <div class="page-break"></div>
 </div>
-@endforeach
+{{--@endforeach--}}
 <div class="footer">
     <p>Page <span class="pagenum"></span></p>
 </div>
