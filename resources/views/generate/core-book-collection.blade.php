@@ -20,6 +20,15 @@
             background-color: #053742;
             color: white;
         }
+        .pagenum:before {
+            content: counter(page);
+        }
+        .footer {
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 100px;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +69,9 @@
     <div class="page-break"></div>
 </div>
 @endforeach
+<div class="footer">
+    <p>Page <span class="pagenum"></span></p>
+</div>
 
 {{-- <p class="text-center" style="margin:0">Republic of the Philippine</p>
 <h5 class="text-center" style="margin:0">Bicol University Gubat Campus</h5>

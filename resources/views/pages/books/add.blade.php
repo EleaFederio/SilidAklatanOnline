@@ -6,7 +6,7 @@
 
 <!-- Modals -->
 <div class="modal-body">
-    
+
     @if (session('errors'))
         @foreach ($errors as $error)
             <li> {{ $error }}  </li>
@@ -72,7 +72,12 @@
                 </div>
             </div>
             <div class="form-row col-md-10">
-                <input type="submit" class="btn btn-primary" value="Add Book">
+                <div class="form-group col-md-4">
+                    <input type="submit" class="btn btn-primary" value="Add Book">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="submit" class="btn btn-danger" value="Cancel">
+                </div>
             </div>
         </div>
     </div>
