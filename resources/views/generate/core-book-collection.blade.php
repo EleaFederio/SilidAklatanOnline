@@ -4,12 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <link href="//cdn.muicss.com/mui-0.10.1/css/mui.min.css" rel="stylesheet" type="text/css" /> --}}
-    <!-- <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous"> -->
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="{{ url('css').'/bootstrap.min.css' }}"> --}}
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
     <title>Document</title>
     <style>
         td, th {
@@ -23,18 +17,81 @@
         .pagenum:before {
             content: counter(page);
         }
+        .container,
+        .container-fluid,
+        .container-sm,
+        .container-md,
+        .container-lg,
+        .container-xl {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        @media (min-width: 576px) {
+            .container, .container-sm {
+                max-width: 540px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container, .container-sm, .container-md {
+                max-width: 720px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container, .container-sm, .container-md, .container-lg {
+                max-width: 960px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl {
+                max-width: 1140px;
+            }
+        }
+        .text-center {
+            text-align: center !important;
+        }
+        .table {
+            border-collapse: collapse !important;
+        }
+        .table td,
+        .table th {
+            background-color: #fff !important;
+        }
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6 !important;
+        }
+        .table-dark {
+            color: inherit;
+        }
+        .table-dark th,
+        .table-dark td,
+        .table-dark thead th,
+        .table-dark tbody + tbody {
+            border-color: #dee2e6;
+        }
+        .table .thead-dark th {
+            color: inherit;
+            border-color: #dee2e6;
+        }
         .footer {
             width: 100%;
             text-align: center;
             position: fixed;
-            bottom: 100px;
+            bottom: 0px;
         }
     </style>
 </head>
 <body>
 
 
-@foreach($books->chunk(30) as $chunk)
+{{--@foreach($books->chunk(30) as $chunk)--}}
 <div >
     <div class="docheader">
         <p class="text-center" style="margin:0"><small>Republic of the Philippine</small></p>
@@ -55,7 +112,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($chunk as $book)
+        @foreach ($books as $book)
         <tr scope="row">
             <td class="text-center"> {{ $book->title }} </td>
             <td class="text-center"> {{ $book->call_number }} </td>
@@ -68,18 +125,10 @@
     </table>
     <div class="page-break"></div>
 </div>
-@endforeach
+{{--@endforeach--}}
 <div class="footer">
     <p>Page <span class="pagenum"></span></p>
 </div>
-
-{{-- <p class="text-center" style="margin:0">Republic of the Philippine</p>
-<h5 class="text-center" style="margin:0">Bicol University Gubat Campus</h5>
-<p class="text-center" style="margin:0"><small>Pinotingan, Gubat, Sorsogon</small></p>
-<br>
-<h4 class="text-center"><strong>LIBRARY</strong></h4>
-<br> --}}
-
 
 </body>
 </html>

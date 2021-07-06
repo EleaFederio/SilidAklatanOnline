@@ -7,14 +7,20 @@
 <!-- Modals -->
 <div class="modal-body">
 
-    @if (session('errors'))
-        @foreach ($errors as $error)
+    @if($errors->any())
+        @foreach ($errors->all() as $error)
             <li> {{ $error }}  </li>
         @endforeach
     @endif
-    @if (session('success'))
-        {{ session('success') }}
-    @endif'
+
+{{--    @if (session('errors'))--}}
+{{--        @foreach ($errors as $error)--}}
+{{--            <li> {{ $error }}  </li>--}}
+{{--        @endforeach--}}
+{{--    @endif--}}
+{{--    @if (session('success'))--}}
+{{--        {{ session('success') }}--}}
+{{--    @endif'--}}
 
     <form action={{ url("books") }} method="POST" enctype="multipart/form-data">
         @csrf
@@ -30,6 +36,7 @@
             <div class="form-group col-md-6">
             <label>Title</label>
                 <input type="text" class="form-control" name="title" placeholder="Book Title...">
+                <span>@error('title'){{$message}}@enderror</span>
             </div>
             <div class="form-group col-md-6">
                 <label>Author</label>
@@ -86,6 +93,7 @@
 
 <script>
     function imagePreview(){
+
         var reader = new FileReader();
         var imageField = document.getElementById("bookpic");
         reader.onload = function(){

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Book;
 //use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 use Excel;
 use App\Imports\BookImport;
@@ -46,9 +47,11 @@ class BooksController extends Controller
     {
         $fileName = null;
 
-        $validator = Validator::make($request->all(), [
-            'book_image' => 'image|max:5000|mimes:jpg,jpeg'
+        $validator = $request->validate([
+            'title' => 'required'
         ]);
+
+        dd($validator->passes());
 
         if($validator->passes()){
 
@@ -60,19 +63,33 @@ class BooksController extends Controller
                 $file->move($savePath, $fileName);
             }
 
-            Book::create([
-                'title' => $request->title,
-                'author' => $request->author,
-                'publisher' => $request->publisher,
-                'call_number' => $request->call_number,
-                'isbn' => $request->isbn,
-                'edition' => $request->edition,
-                'year' => $request->year,
-                'pages' => $request->pages,
-                'copies' => $request->copies,
-                'image_url' => $fileName,
-                'remarks' => $request->remarks
-            ]);
+            $isBookExist = DB::table('books')
+                ->where('title', $request->title)
+                ->where('author', $request->author)
+                ->where('publisher', $request->publisher)
+//                ->where('call_number', $request->call_number)
+//                ->where('isbn', $request->isbn)
+                ->get();
+
+            if (count($isBookExist) > 0){
+                return view('pages/books/add')->with('errors' , ['Book is already in the database']);
+            }else{
+                Book::create([
+                    'title' => $request->title,
+                    'author' => $request->author,
+                    'publisher' => $request->publisher,
+                    'call_number' => $request->call_number,
+                    'isbn' => $request->isbn,
+                    'edition' => $request->edition,
+                    'year' => $request->year,
+                    'pages' => $request->pages,
+                    'copies' => $request->copies,
+                    'image_url' => $fileName,
+                    'remarks' => $request->remarks
+                ]);
+            }
+//            dd('Hahaha');
+
 
             $books = Book::all();
 //            echo '<pre>';
@@ -80,6 +97,7 @@ class BooksController extends Controller
 //            echo '</pre>';
             return view('pages/books/index')->with('books', $books);
         }else{
+            dd($validator->errors()->all());
             return redirect()->back()
             ->with(['errors'=>$validator->errors()->all()]);
         }

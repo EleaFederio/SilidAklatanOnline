@@ -20,16 +20,14 @@ class ReportGenerator extends Controller
 
     public function studentsList(){
         $students = Student::all();
-        $pdf = PDF::loadview('generate/student_list', ['students' => $students])->setPaper('legal');
+        $pdf = PDF::loadview('generate/student_list', ['students' => $students])->setPaper('folio');
         return $pdf->stream('students.pdf');
-        // return view('pages/generate/student_list')->with('students', $students);
     }
 
     public function coreBookCollection(){
         $books = Book::all();
-        $pdf = PDF::loadview('generate/core-book-collection', ['books' => $books])->setPaper('legal');
+        $pdf = PDF::loadview('generate/core-book-collection', ['books' => $books])->setPaper('folio', 'portrait');
         return $pdf->stream('students.pdf');
-        // return view('pages/generate/student_list')->with('students', $students);
     }
 
     public function book_export(){
