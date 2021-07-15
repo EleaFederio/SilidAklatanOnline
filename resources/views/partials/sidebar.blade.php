@@ -57,7 +57,7 @@
     <a href="#myAccount" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">My Account</a>
     <ul class="collapse list-unstyled" id="myAccount">
       <li>
-          <a href="{{ url('/change_password') }}">Settings</a>
+          <a href="{{ url('/settings') }}">Settings</a>
       </li>
       <li>
           <a href="{{ route('logout') }}"

@@ -35,7 +35,7 @@ class StudentsController extends Controller
             'year' => $request->year,
             'block' => $request->block,
             'major' => $request->major,
-            "hash" => $this->generateRandomString(),
+            "password" => $this->generateRandomString(),
         ]);
         $students = Student::all();
         return view('pages/students/students')->with('students', $students);
@@ -96,7 +96,7 @@ class StudentsController extends Controller
     public function smsResetPassword($id){
         $student = Student::find($id);
         $number = "+63{$student->phone}";
-        $message = "Hello {$student->firstname}, {$student->lastname} ";
+        $message = "Hello {$student->firstname}, {$student->lastname} "; // Reset Message
 
         $url = "https://semysms.net/api/3/sms.php"; //Url address for sending SMS
         $phone = $number; // Phone number

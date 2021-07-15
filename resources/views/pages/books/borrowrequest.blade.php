@@ -30,7 +30,8 @@
                 <tr>
                     <td> <h6 style="margin-bottom:0%"><strong>{{ $request->firstname.' '.$request->lastname}}</strong></h6> <p>{{ $request->course.' '.$request->year }}</p></td>
                     <td><h6 style="margin-bottom:0%"><strong>{{ $request->title }}</strong></h6><p style="margin-bottom:0%">Author: {{ $request->author }}</p><p style="margin-bottom:0%">Publisher: {{ $request->publisher }}</p></td>
-                    <td><a href="{{ url('books')."/".$request->id }}" class="btn btn-primary btn-sm">Approve</a></td>
+{{--                    <td><a href="{{ url('book/borrow_request/approved/')."/".$request->id }}" class="btn btn-primary btn-sm">Approve</a></td>--}}
+                    <td><form action="{{ url("book/borrow_request/approved/").'/'.$request->id }}" method="POST"> @csrf @method('POST') <input type="submit" name="submit" value="Approve" class="btn btn-primary btn-sm" id=""> </form></td>
                     <td><form action="{{ url("books").'/'.$request->id }}" method="POST"> @csrf @method('DELETE') <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm" id=""> </form></td>
                 </tr>
             @endforeach

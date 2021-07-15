@@ -47,60 +47,52 @@ class BooksController extends Controller
     {
         $fileName = null;
 
-        $validator = $request->validate([
-            'title' => 'required'
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'publisher' => 'required'
         ]);
 
-        dd($validator->passes());
+        if($request->book_image != null){
+            $dataTime = date('Ymd_His');
+            $file = $request->file('book_image');
+            $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
+            $savePath = public_path('/images/');
+            $file->move($savePath, $fileName);
+        }
 
-        if($validator->passes()){
-
-            if($request->book_image != null){
-                $dataTime = date('Ymd_His');
-                $file = $request->file('book_image');
-                $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
-                $savePath = public_path('/images/');
-                $file->move($savePath, $fileName);
-            }
-
-            $isBookExist = DB::table('books')
-                ->where('title', $request->title)
-                ->where('author', $request->author)
-                ->where('publisher', $request->publisher)
+        $isBookExist = DB::table('books')
+            ->where('title', $request->title)
+            ->where('author', $request->author)
+            ->where('publisher', $request->publisher)
 //                ->where('call_number', $request->call_number)
 //                ->where('isbn', $request->isbn)
-                ->get();
+            ->get();
 
-            if (count($isBookExist) > 0){
-                return view('pages/books/add')->with('errors' , ['Book is already in the database']);
-            }else{
-                Book::create([
-                    'title' => $request->title,
-                    'author' => $request->author,
-                    'publisher' => $request->publisher,
-                    'call_number' => $request->call_number,
-                    'isbn' => $request->isbn,
-                    'edition' => $request->edition,
-                    'year' => $request->year,
-                    'pages' => $request->pages,
-                    'copies' => $request->copies,
-                    'image_url' => $fileName,
-                    'remarks' => $request->remarks
-                ]);
-            }
-//            dd('Hahaha');
-
-
-            $books = Book::all();
-//            echo '<pre>';
-//                var_dump($books);
-//            echo '</pre>';
-            return view('pages/books/index')->with('books', $books);
+        if (count($isBookExist) > 0){
+            return view('pages/books/add')->with('errors' , ['Book is already in the database']);
         }else{
-            dd($validator->errors()->all());
-            return redirect()->back()
-            ->with(['errors'=>$validator->errors()->all()]);
+            Book::create([
+                'title' => $request->title,
+                'author' => $request->author,
+                'publisher' => $request->publisher,
+                'call_number' => $request->call_number,
+                'isbn' => $request->isbn,
+                'edition' => $request->edition,
+                'year' => $request->year,
+                'pages' => $request->pages,
+                'copies' => $request->copies,
+                'image_url' => $fileName,
+                'remarks' => $request->remarks
+            ]);
         }
+
+
+        $books = Book::all();
+
+        return view('pages/books/index')->with('books', $books);
+
+
     }
 
     /**
@@ -184,6 +176,10 @@ class BooksController extends Controller
         ->get();
 
         return view('pages/books/borrowrequest')->with('borrowRequest', $data);
+    }
+
+    public function borrowBookController($id){
+        dd($id);
     }
 
     public function borrowBookApprovedList(){

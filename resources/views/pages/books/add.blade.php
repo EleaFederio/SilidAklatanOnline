@@ -7,11 +7,11 @@
 <!-- Modals -->
 <div class="modal-body">
 
-    @if($errors->any())
-        @foreach ($errors->all() as $error)
-            <li> {{ $error }}  </li>
-        @endforeach
-    @endif
+{{--    @if($errors->any())--}}
+{{--        @foreach ($errors->all() as $error)--}}
+{{--            <li> {{ $error }}  </li>--}}
+{{--        @endforeach--}}
+{{--    @endif--}}
 
 {{--    @if (session('errors'))--}}
 {{--        @foreach ($errors as $error)--}}
@@ -35,16 +35,18 @@
         <div class="col-md-7">
             <div class="form-group col-md-6">
             <label>Title</label>
-                <input type="text" class="form-control" name="title" placeholder="Book Title...">
-                <span>@error('title'){{$message}}@enderror</span>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Book Title...">
+                <div class="invalid-feedback">@error('title'){{$message}}@enderror</div>
             </div>
             <div class="form-group col-md-6">
                 <label>Author</label>
-                <input type="text" class="form-control" name="author" placeholder="Author's Name...">
+                <input type="text" class="form-control @error('author') is-invalid @enderror" name="author" placeholder="Author's Name...">
+                <div class="invalid-feedback">@error('author'){{$message}}@enderror</div>
             </div>
             <div class="form-group col-md-10">
                 <label>Publisher</label>
-                <input type="text" class="form-control" name="publisher" placeholder="Publishers Name...">
+                <input type="text" class="form-control @error('publisher') is-invalid @enderror" name="publisher" placeholder="Publishers Name...">
+                <div class="invalid-feedback">@error('publisher'){{$message}}@enderror</div>
             </div>
             <div class="form-row col-md-10">
                 <div class="form-group col-md-4">

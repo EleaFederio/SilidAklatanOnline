@@ -2,7 +2,7 @@
 use \App\Http\Controllers\ReportGenerator;
 use \App\Http\Controllers\BooksController;
 use \App\Http\Controllers\HomeController;
-use \App\Http\Controllers\Auth\ChangePasswordController;
+use \App\Http\Controllers\SettignsController;
 use \App\Http\Controllers\StudentsController;
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +30,7 @@ Route::get('students_list', [ReportGenerator::class, 'studentsList']);
 Route::get('book_records', [ReportGenerator::class, 'coreBookCollection']);
 Route::get('bookrecords', [ReportGenerator::class, 'book_export']);
 Route::get('book/borrowrequest', [BooksController::class, 'borrowBookRequestList']);
+Route::post('book/borrow_request/approved/{id}', [BooksController::class, 'borrowBookController']);
 Route::get('book/borrowapproved', [BooksController::class, 'borrowBookApprovedList']);
 Route::get('book/request', [BooksController::class, 'request']);
 
@@ -53,4 +54,4 @@ Route::get('/about', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/change_password', [ChangePasswordController::class, 'index']);
+Route::resource('/settings', 'SettignsController');
