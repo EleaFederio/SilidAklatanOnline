@@ -31,7 +31,7 @@ Route::get('book_records', [ReportGenerator::class, 'coreBookCollection']);
 Route::get('bookrecords', [ReportGenerator::class, 'book_export']);
 Route::get('book/borrowrequest', [BooksController::class, 'borrowBookRequestList']);
 Route::post('book/borrow_request/approved/{id}', [BooksController::class, 'borrowBookController']);
-Route::get('book/borrowapproved', [BooksController::class, 'borrowBookApprovedList']);
+Route::get('book/borrow/approved', [BooksController::class, 'borrowBookApprovedList']);
 Route::get('book/request', [BooksController::class, 'request']);
 
 //Reset Student Password using sms

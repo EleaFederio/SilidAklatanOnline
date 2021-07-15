@@ -21,7 +21,7 @@
         <a href="/books">Inventory</a>
     </li>
     <li>
-        <a href="/book/borrowrequest">Borrows</a>
+        <a href="/book/borrowrequest">Borrow Manager</a>
     </li>
     <li>
         <a href="/book/request">Request</a>

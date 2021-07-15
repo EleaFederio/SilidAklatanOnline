@@ -9,7 +9,7 @@
         <a class="nav-link active" href="/book/borrowrequest">Borrow Request</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="/book/borrowapproved">Borrowed Books</a>
+        <a class="nav-link" href="book/borrow/approved">Borrowed Books</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="#">Retured Books</a>

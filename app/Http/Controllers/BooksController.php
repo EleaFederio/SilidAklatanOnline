@@ -170,10 +170,14 @@ class BooksController extends Controller
     public function borrowBookRequestList(){
 
         $data = DB::table('book_student')
-        ->join('students', 'students.id', 'book_student.student_id')
-        ->join('books', 'books.id', 'book_student.book_id')
-        ->select('students.firstname', 'students.lastname', 'students.student_id', 'students.course', 'students.year', 'books.title', 'books.author', 'books.publisher', 'books.image_url', 'book_student.id', 'book_student.created_at')
-        ->get();
+            ->join('students', 'students.id', 'book_student.student_id')
+            ->join('books', 'books.id', 'book_student.book_id')
+            ->join('borrow_status', 'borrow_status.id', 'book_student.borrow_id')
+            ->select('students.firstname', 'students.lastname', 'students.student_id', 'students.course', 'students.year', 'books.title', 'books.author', 'books.publisher', 'books.image_url', 'book_student.id', 'borrow_status.name', 'book_student.created_at')
+            ->where('borrow_id', 1)
+            ->get();
+
+//        dd($data);
 
         return view('pages/books/borrowrequest')->with('borrowRequest', $data);
     }
@@ -183,7 +187,14 @@ class BooksController extends Controller
     }
 
     public function borrowBookApprovedList(){
-        return view('pages/books/approvedrequest');
+        $data = DB::table('book_student')
+            ->join('students', 'students.id', 'book_student.student_id')
+            ->join('books', 'books.id', 'book_student.book_id')
+            ->join('borrow_status', 'borrow_status.id', 'book_student.borrow_id')
+            ->select('students.firstname', 'students.lastname', 'students.student_id', 'students.course', 'students.year', 'students.phone', 'books.title', 'books.author', 'books.publisher', 'books.image_url', 'book_student.id', 'borrow_status.name', 'book_student.created_at')
+            ->where('borrow_id', 2)
+            ->get();
+        return view('pages/books/approvedrequest')->with('approvedBooks', $data);
     }
 
     public function request(){

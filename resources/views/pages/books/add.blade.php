@@ -2,10 +2,14 @@
 
 @section('content')
 
-<h1>New Book</h1>
+<h2 class="h2">New Book</h2>
 
 <!-- Modals -->
-<div class="modal-body">
+<div class="jumbotron"
+     style="
+        background-color: #BBE1FA !important;
+    "
+>
 
 {{--    @if($errors->any())--}}
 {{--        @foreach ($errors->all() as $error)--}}
@@ -83,9 +87,6 @@
             <div class="form-row col-md-10">
                 <div class="form-group col-md-4">
                     <input type="submit" class="btn btn-primary" value="Add Book">
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="submit" class="btn btn-danger" value="Cancel">
                 </div>
             </div>
         </div>
