@@ -175,6 +175,7 @@ class BooksController extends Controller
             ->join('borrow_status', 'borrow_status.id', 'book_student.borrow_id')
             ->select('students.firstname', 'students.lastname', 'students.student_id', 'students.course', 'students.year', 'books.title', 'books.author', 'books.publisher', 'books.image_url', 'book_student.id', 'borrow_status.name', 'book_student.created_at')
             ->where('borrow_id', 1)
+            ->orWhere('borrow_id' , 2)
             ->get();
 
 //        dd($data);
@@ -183,7 +184,23 @@ class BooksController extends Controller
     }
 
     public function borrowBookController($id){
-        dd($id);
+        $data = DB::table('book_student')
+            ->where('book_student.student_id', $id)
+            ->join('students', 'students.id', 'book_student.student_id')
+            ->join('books', 'books.id', 'book_student.book_id')
+            ->join('borrow_status', 'borrow_status.id', 'book_student.borrow_id')
+            ->update(['book_student.borrow_id' => 2] );
+//        return redirect()->back();
+
+        $data = DB::table('book_student')
+            ->join('students', 'students.id', 'book_student.student_id')
+            ->join('books', 'books.id', 'book_student.book_id')
+            ->join('borrow_status', 'borrow_status.id', 'book_student.borrow_id')
+            ->select('students.firstname', 'students.lastname', 'students.student_id', 'students.course', 'students.year', 'students.phone', 'books.title', 'books.author', 'books.publisher', 'books.image_url', 'book_student.id', 'borrow_status.name', 'book_student.created_at')
+            ->where('borrow_id', 1)
+            ->orWhere('borrow_id' , 2)
+            ->get();
+        return view('pages/books/borrowrequest')->with('borrowRequest', $data);
     }
 
     public function borrowBookApprovedList(){
@@ -192,7 +209,7 @@ class BooksController extends Controller
             ->join('books', 'books.id', 'book_student.book_id')
             ->join('borrow_status', 'borrow_status.id', 'book_student.borrow_id')
             ->select('students.firstname', 'students.lastname', 'students.student_id', 'students.course', 'students.year', 'students.phone', 'books.title', 'books.author', 'books.publisher', 'books.image_url', 'book_student.id', 'borrow_status.name', 'book_student.created_at')
-            ->where('borrow_id', 2)
+            ->where('borrow_id', 3)
             ->get();
         return view('pages/books/approvedrequest')->with('approvedBooks', $data);
     }

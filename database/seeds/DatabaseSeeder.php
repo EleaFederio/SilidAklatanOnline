@@ -21,7 +21,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'request',
         ]);
         DB::table('borrow_status')->insert([
+            'name' => 'approved',
+        ]);
+        DB::table('borrow_status')->insert([
             'name' => 'borrowed',
+        ]);
+        DB::table('borrow_status')->insert([
+            'name' => 'notified',
         ]);
         DB::table('borrow_status')->insert([
             'name' => 'returned',
